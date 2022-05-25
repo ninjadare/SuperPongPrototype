@@ -52,8 +52,11 @@ public class BallMovement : MonoBehaviour
 
     public void BallReset()
     {
+        // change to despawn and respawn ball
+        ball.GetComponent<Collider>().isTrigger = true;
         ball.velocity = new Vector3(0, 0, 0);
         ball.transform.position = new Vector3(0f, 1f, 0f);
+        ball.GetComponent<Collider>().isTrigger = false;
 
         Invoke("BallServe", 2f);
     }

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class DariusBallMovement : MonoBehaviour
 {
-    [SerializeField] Rigidbody ball;
+    [SerializeField] private Rigidbody ball;
+    [SerializeField] private GameObject leftPaddle, rightPaddle;
 
     [SerializeField] private float ballSpeed;
+    [SerializeField] private float paddleMultiplier;
 
     private float randomServeX;
     private float randomServeZ;
@@ -16,15 +18,12 @@ public class DariusBallMovement : MonoBehaviour
     {
         ball = GetComponent<Rigidbody>();
 
-        BallServe();
+        Invoke("BallServe", 2f);
     }
 
-    public void ResetBall()
+    void Update()
     {
-        ball.velocity = new Vector3(0, 0, 0);
-        ball.transform.position = new Vector3(0f, 1f, 0f);
 
-        Invoke("BallServe", 2f);
     }
 
     private void BallServe()
@@ -49,5 +48,49 @@ public class DariusBallMovement : MonoBehaviour
 
         ball.velocity = new Vector3(randomServeX * ballSpeed, 0f, randomServeZ * ballSpeed);
         ball.transform.position = new Vector3(0f, 1f, 0f);
+    }
+
+    public void BallReset()
+    {
+        // change to despawn and respawn ball
+        ball.velocity = new Vector3(0, 0, 0);
+        ball.transform.position = new Vector3(0f, 1f, 0f);
+
+        Invoke("BallServe", 2f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == leftPaddle)
+        {
+            if (leftPaddle.GetComponent<Rigidbody>().velocity.x > 0)
+            {
+                ball.velocity = new Vector3(ballSpeed, 0f, -ballSpeed * paddleMultiplier);
+            }
+            else if (leftPaddle.GetComponent<Rigidbody>().velocity.x < 0)
+            {
+                ball.velocity = new Vector3(-ballSpeed, 0f, -ballSpeed * paddleMultiplier);
+            }
+            else
+            {
+                ball.velocity = new Vector3(0f, 0f, -ballSpeed * paddleMultiplier);
+            }
+        }
+
+        if (collision.gameObject == rightPaddle)
+        {
+            if (rightPaddle.GetComponent<Rigidbody>().velocity.x > 0)
+            {
+                ball.velocity = new Vector3(ballSpeed, 0f, ballSpeed * paddleMultiplier);
+            }
+            else if (rightPaddle.GetComponent<Rigidbody>().velocity.x < 0)
+            {
+                ball.velocity = new Vector3(-ballSpeed, 0f, ballSpeed * paddleMultiplier);
+            }
+            else
+            {
+                ball.velocity = new Vector3(0f, 0f, ballSpeed * paddleMultiplier);
+            }
+        }
     }
 }

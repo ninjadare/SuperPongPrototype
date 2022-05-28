@@ -19,15 +19,15 @@ public class GameManager : MonoBehaviour
     {
         leftScore++;
         Debug.Log(leftScore);
-        //Ball.GetComponent<DariusBallMovement>().ResetBall();
-        Ball.GetComponent<BallMovement>().BallReset();
+        Ball.GetComponent<DariusBallMovement>().BallReset();
+        //Ball.GetComponent<BallMovement>().BallReset();
     }
 
     public void UpdateRightScore()
     {
         rightScore++;
         Debug.Log(rightScore);
-        //Ball.GetComponent<DariusBallMovement>().ResetBall();
-        Ball.GetComponent<BallMovement>().BallReset();
+        Ball.GetComponent<DariusBallMovement>().BallReset();
+        //Ball.GetComponent<BallMovement>().BallReset();
     }
 }

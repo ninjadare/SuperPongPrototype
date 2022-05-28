@@ -738,6 +738,18 @@ PrefabInstance:
       propertyPath: ballSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 6013947372543830588, guid: 7448489f26e974642aff75e2f1be4a14, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013947372543830588, guid: 7448489f26e974642aff75e2f1be4a14, type: 3}
+      propertyPath: leftPaddle
+      value: 
+      objectReference: {fileID: 349457702}
+    - target: {fileID: 6013947372543830588, guid: 7448489f26e974642aff75e2f1be4a14, type: 3}
+      propertyPath: rightPaddle
+      value: 
+      objectReference: {fileID: 786265674}
     - target: {fileID: 7262929657602252896, guid: 7448489f26e974642aff75e2f1be4a14, type: 3}
       propertyPath: m_Name
       value: Ball
@@ -790,8 +802,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6013947372543830588, guid: 7448489f26e974642aff75e2f1be4a14, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7448489f26e974642aff75e2f1be4a14, type: 3}
 --- !u!1 &1263285230 stripped
 GameObject:

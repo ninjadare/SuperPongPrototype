@@ -8,6 +8,7 @@ public class DariusBallMovement : MonoBehaviour
     [SerializeField] private GameObject leftPaddle, rightPaddle;
 
     [SerializeField] private float ballSpeed;
+    [SerializeField] private int curveSpeed;
     [SerializeField] private float paddleMultiplier;
 
     private float randomServeX;
@@ -48,6 +49,32 @@ public class DariusBallMovement : MonoBehaviour
 
         ball.velocity = new Vector3(randomServeX * ballSpeed, 0f, randomServeZ * ballSpeed);
         ball.transform.position = new Vector3(0f, 1f, 0f);
+    }
+
+    public void BallCurve()
+    {
+        // called only when paddle power up is active
+        if (ball.velocity.x > 0)
+        {
+            ball.AddForce(-ballSpeed * curveSpeed * 2, 0, 0, ForceMode.Force);
+        }
+        else if (ball.velocity.x < 0)
+        {
+            ball.AddForce(ballSpeed * curveSpeed * 2, 0, 0, ForceMode.Force);
+        }
+        else
+        {
+            if (ball.transform.position.x > 0)
+            {
+                ball.AddForce(-ballSpeed * curveSpeed, 0, 0, ForceMode.Force);
+            }
+            else if (ball.transform.position.x < 0)
+            {
+                ball.AddForce(ballSpeed * curveSpeed, 0, 0, ForceMode.Force);
+            }
+        }
+
+        Debug.Log("Ending Curve");
     }
 
     public void BallReset()

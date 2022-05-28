@@ -5,20 +5,54 @@ using UnityEngine;
 public class CurveBall : MonoBehaviour
 {
     [SerializeField] private GameObject ball;
-    [SerializeField] private float curveTime;
+    [SerializeField] private Rigidbody ballBody;
 
-    private void InitiateCurve()
+    [SerializeField] private float curveTime;
+    [SerializeField] private int curveSpeed;
+
+    public bool activateCurveBall = false;
+    public bool usedCurveBall = false;
+
+    public void BallCurve()
     {
-        ball.GetComponent<DariusBallMovement>().BallCurve();
+        // called only when paddle power up is active
+        if (ballBody.velocity.x > 0)
+        {
+            ballBody.AddForce(-curveSpeed * 2, 0, 0, ForceMode.Force);
+        }
+        else if (ballBody.velocity.x < 0)
+        {
+            ballBody.AddForce(curveSpeed * 2, 0, 0, ForceMode.Force);
+        }
+        else
+        {
+            if (ballBody.transform.position.x > 0)
+            {
+                ballBody.AddForce(-curveSpeed, 0, 0, ForceMode.Force);
+            }
+            else if (ballBody.transform.position.x < 0)
+            {
+                ballBody.AddForce(curveSpeed, 0, 0, ForceMode.Force);
+            }
+        }
+
+        ///Debug.Log("Ending Curve");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision, ball);
-        if (collision.gameObject == ball)
+        if (activateCurveBall == true)
         {
-            Invoke("InitiateCurve", curveTime);
-            Debug.Log("Starting Curve");
+            if (usedCurveBall == false)
+            {
+                ///Debug.Log(collision, ball);
+                if (collision.gameObject == ball)
+                {
+                    usedCurveBall = true;
+                    Invoke("BallCurve", curveTime);
+                    Debug.Log("Starting Curve");
+                }
+            }
         }
     }    
 }

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class RightScore : MonoBehaviour
 {
-    public GameObject arenaScript;
+    [SerializeField] private GameObject arenaScript;
+    [SerializeField] private GameObject ball;
 
-    private void OnTriggerEnter(Collider ball)
+    private void OnTriggerEnter(Collider collision)
     {
-        arenaScript.GetComponent<GameManager>().UpdateRightScore();
+        if (collision.gameObject == ball)
+        {
+            arenaScript.GetComponent<GameManager>().UpdateRightScore();
+        }
     }
 }

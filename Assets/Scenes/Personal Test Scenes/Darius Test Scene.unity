@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arenaScript: {fileID: 1316684304}
+  ball: {fileID: 1021873790}
 --- !u!65 &208075137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1050,6 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arenaScript: {fileID: 1316684304}
+  ball: {fileID: 1021873790}
 --- !u!65 &1954878954
 BoxCollider:
   m_ObjectHideFlags: 0

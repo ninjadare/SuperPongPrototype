@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody ball;
+    [SerializeField] private Rigidbody leftPaddleBody, rightPaddleBody;
     [SerializeField] private GameObject leftPaddle, rightPaddle;
 
     [SerializeField] private float ballSpeed;
@@ -21,11 +22,6 @@ public class BallMovement : MonoBehaviour
         Invoke("BallServe", 2f);
     }
 
-    void Update()
-    {
-
-    }
-
     private void BallServe()
     {
         if (Random.value < 0.5f)
@@ -39,59 +35,83 @@ public class BallMovement : MonoBehaviour
 
         if (Random.value > 0.5f)
         {
-            randomServeX = Random.Range(0f, 1f);
+            //randomServeX = Random.Range(0f, 1f);
         }
         else
         {
-            randomServeX = Random.Range(-1f, 0f);
+            //randomServeX = Random.Range(-1f, 0f);
         }
 
-        ball.velocity = new Vector3(randomServeX * ballSpeed, 0f, randomServeZ * ballSpeed);
+        ball.velocity = new Vector3(0f, 0f, randomServeZ * ballSpeed);
         ball.transform.position = new Vector3(0f, 1f, 0f);
     }
 
     public void BallReset()
     {
         // change to despawn and respawn ball
-        ball.GetComponent<Collider>().isTrigger = true;
         ball.velocity = new Vector3(0, 0, 0);
         ball.transform.position = new Vector3(0f, 1f, 0f);
-        ball.GetComponent<Collider>().isTrigger = false;
 
         Invoke("BallServe", 2f);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == leftPaddle)
+        float distanceLeft = ball.transform.position.x - leftPaddle.transform.position.x;
+
+        if (collision.gameObject.name == "Left Player Paddle")
         {
-            if (leftPaddle.GetComponent<Rigidbody>().velocity.x > 0)
+            if (leftPaddleBody.velocity.x > 0.1f)
             {
-                ball.velocity = new Vector3(ballSpeed, 0f, -ballSpeed * paddleMultiplier);
+                ball.velocity = new Vector3(ballSpeed * paddleMultiplier, 0f, -ballSpeed * paddleMultiplier);
             }
-            else if (leftPaddle.GetComponent<Rigidbody>().velocity.x < 0)
+            else if (leftPaddleBody.velocity.x < -0.1f)
             {
-                ball.velocity = new Vector3(-ballSpeed, 0f, -ballSpeed * paddleMultiplier);
+                ball.velocity = new Vector3(-ballSpeed * paddleMultiplier, 0f, -ballSpeed * paddleMultiplier);
             }
             else
             {
-                ball.velocity = new Vector3(0f, 0f, -ballSpeed * paddleMultiplier);
+                if (distanceLeft > 0.5f)
+                {
+                    ball.velocity = new Vector3(ballSpeed * paddleMultiplier, 0f, -ballSpeed * paddleMultiplier);
+                }
+                else if (distanceLeft < -0.5f)
+                {
+                    ball.velocity = new Vector3(-ballSpeed * paddleMultiplier, 0f, -ballSpeed * paddleMultiplier);
+                }
+                else
+                {
+                    ball.velocity = new Vector3(0f, 0f, -ballSpeed * paddleMultiplier);
+                }
             }
         }
 
-        if (collision.gameObject == rightPaddle)
+        float distanceRight = ball.transform.position.x - rightPaddle.transform.position.x;
+
+        if (collision.gameObject.name == "Right Player Paddle")
         {
-            if (rightPaddle.GetComponent<Rigidbody>().velocity.x > 0)
+            if (rightPaddleBody.velocity.x > 0.1f)
             {
-                ball.velocity = new Vector3(ballSpeed, 0f, ballSpeed * paddleMultiplier);
+                ball.velocity = new Vector3(ballSpeed * paddleMultiplier, 0f, ballSpeed * paddleMultiplier);
             }
-            else if (rightPaddle.GetComponent<Rigidbody>().velocity.x < 0)
+            else if (rightPaddleBody.velocity.x < -0.1f)
             {
-                ball.velocity = new Vector3(-ballSpeed, 0f, ballSpeed * paddleMultiplier);
+                ball.velocity = new Vector3(-ballSpeed * paddleMultiplier, 0f, ballSpeed * paddleMultiplier);
             }
             else
             {
-                ball.velocity = new Vector3(0f, 0f, ballSpeed * paddleMultiplier);
+                if (distanceRight > 0.5f)
+                {
+                    ball.velocity = new Vector3(ballSpeed * paddleMultiplier, 0f, ballSpeed * paddleMultiplier);
+                }
+                else if (distanceRight < -0.5f)
+                {
+                    ball.velocity = new Vector3(-ballSpeed * paddleMultiplier, 0f, ballSpeed * paddleMultiplier);
+                }
+                else
+                {
+                    ball.velocity = new Vector3(0f, 0f, ballSpeed * paddleMultiplier);
+                }
             }
         }
     }

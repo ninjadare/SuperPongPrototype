@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeftPaddleCurveBall : MonoBehaviour
+public class CurveBall : MonoBehaviour
 {
     [SerializeField] private GameObject ball;
     [SerializeField] private Rigidbody ballBody;
@@ -10,10 +10,10 @@ public class LeftPaddleCurveBall : MonoBehaviour
     [SerializeField] private float curveTime;
     [SerializeField] private int curveSpeed;
 
-    public bool activateLeftCurveBall = false;
-    public bool usedLeftCurveBall = false;
+    public bool activateCurveBall = false;
+    public bool usedCurveBall = false;
 
-    public void CurveBall()
+    public void BallCurve()
     {
         // called only when paddle power up is active
         if (ballBody.velocity.x > 0)
@@ -41,18 +41,18 @@ public class LeftPaddleCurveBall : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (activateLeftCurveBall == true)
+        if (activateCurveBall == true)
         {
-            if (usedLeftCurveBall == false)
+            if (usedCurveBall == false)
             {
                 ///Debug.Log(collision, ball);
                 if (collision.gameObject == ball)
                 {
-                    usedLeftCurveBall = true;
-                    Invoke("CurveBall", curveTime);
+                    usedCurveBall = true;
+                    Invoke("BallCurve", curveTime);
                     Debug.Log("Starting Curve");
                 }
             }
         }
-    }
+    }    
 }

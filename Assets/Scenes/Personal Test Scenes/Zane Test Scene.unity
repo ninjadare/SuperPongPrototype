@@ -296,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7225831454055063429, guid: 9a75f3107b0dbc64f8e1e24b273b43ff, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7225831454055063429, guid: 9a75f3107b0dbc64f8e1e24b273b43ff, type: 3}
       propertyPath: m_LocalScale.y
@@ -568,12 +568,7 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 8363724148532722922, guid: 2ec7150368760164a84980a093bd0550, type: 3}
   m_PrefabInstance: {fileID: 1068899066}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &410023019 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8363724148532722902, guid: 2ec7150368760164a84980a093bd0550, type: 3}
-  m_PrefabInstance: {fileID: 1068899066}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &410023028
+--- !u!114 &410023029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -582,15 +577,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 410023002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cc93feb39ab42a4e900bd41d573adc7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8742c86cfa9370740b2d421ad6530595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle: {fileID: 410023002}
-  growSize: 8
-  growDuration: 10
-  activateRightPaddleGrow: 0
-  usedRightPaddleGrow: 0
---- !u!114 &410023029
+  curveBallKey: 111
+  curveBallCooldownTime: 10
+  curveBallScript: {fileID: 410023030}
+--- !u!114 &410023030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -604,46 +597,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 1985652337}
   ballBody: {fileID: 1985652339}
-  curveDelay: 1.25
+  curveTime: 1.25
   curveSpeed: 1000
-  activateRightCurveBall: 0
-  usedRightCurveBall: 0
---- !u!114 &410023030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410023002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f34a3a1b96d622e4aafdf586b0d2526b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 1985652337}
-  ballBody: {fileID: 1985652339}
-  fastDelay: 0
-  fastDuration: 0.5
-  fastSpeed: 40
-  activateRightFastBall: 0
-  usedRightFastBall: 0
---- !u!114 &410023031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410023002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26d6a9d2b65f5a848a5148bdb7544cd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paddle: {fileID: 410023002}
-  accelerateSpeed: 50
-  accelerateDuration: 5
-  activateRightPaddleAccelerate: 0
-  usedRightPaddleAccelerate: 0
+  activateCurveBall: 0
+  usedCurveBall: 0
 --- !u!1 &662520545
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,62 +795,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &774183372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 774183373}
-  - component: {fileID: 774183374}
-  m_Layer: 0
-  m_Name: Power-Up Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &774183373
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774183372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1134272901}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &774183374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774183372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82640fba9f93b884dad9cebc6a9a6be0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fastBallKey: 97
-  fastBallCooldownTime: 10
-  fastBallScript: {fileID: 1134272906}
-  curveBallKey: 113
-  curveBallCooldownTime: 10
-  curveBallScript: {fileID: 1134272905}
-  paddleGrowKey: 101
-  paddleGrowCooldownTime: 10
-  growPaddleScript: {fileID: 1134272904}
-  paddleAccelerateKey: 100
-  paddleAccelerateCooldownTime: 10
-  acceleratePaddleScript: {fileID: 1134272907}
 --- !u!1001 &1068899066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1023,82 +924,6 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7225831454055063425, guid: 9a75f3107b0dbc64f8e1e24b273b43ff, type: 3}
   m_PrefabInstance: {fileID: 218156886}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1134272901 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7225831454055063429, guid: 9a75f3107b0dbc64f8e1e24b273b43ff, type: 3}
-  m_PrefabInstance: {fileID: 218156886}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1134272904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134272892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e80a0379596bd48b2d3ca88cb71075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paddle: {fileID: 1134272892}
-  growSize: 8
-  growDuration: 10
-  activateLeftPaddleGrow: 0
-  usedLeftPaddleGrow: 0
---- !u!114 &1134272905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134272892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d78c594a30d47498d9c7d9532c5611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 1985652337}
-  ballBody: {fileID: 1985652339}
-  curveTime: 1.25
-  curveSpeed: 1000
-  activateLeftCurveBall: 0
-  usedLeftCurveBall: 0
---- !u!114 &1134272906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134272892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf01eaf792d60094e8f6339a75247319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 1985652337}
-  ballBody: {fileID: 1985652339}
-  fastDelay: 0
-  fastDuration: 0.5
-  fastSpeed: 40
-  activateLeftFastBall: 0
-  usedLeftFastBall: 0
---- !u!114 &1134272907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134272892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2504ac217d21f4681c90bd6145bcf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paddle: {fileID: 1134272892}
-  accelerateSpeed: 50
-  accelerateDuration: 5
-  activateLeftPaddleAccelerate: 0
-  usedLeftPaddleAccelerate: 0
 --- !u!1 &1563491949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1162,7 @@ PrefabInstance:
       objectReference: {fileID: 13400000, guid: c28aa11b503336848842c9d76c39bfc1, type: 2}
     - target: {fileID: 7262929657602252922, guid: 7448489f26e974642aff75e2f1be4a14, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7262929657602252922, guid: 7448489f26e974642aff75e2f1be4a14, type: 3}
       propertyPath: m_LocalScale.x
@@ -1423,59 +1248,3 @@ MonoBehaviour:
   rightPaddle: {fileID: 410023002}
   ballSpeed: 20
   paddleMultiplier: 1.5
---- !u!1 &2011503168
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2011503169}
-  - component: {fileID: 2011503170}
-  m_Layer: 0
-  m_Name: Power-Up Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2011503169
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011503168}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 410023019}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2011503170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011503168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8742c86cfa9370740b2d421ad6530595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fastBallKey: 106
-  fastBallCooldownTime: 10
-  fastBallScript: {fileID: 410023030}
-  curveBallKey: 117
-  curveBallCooldownTime: 10
-  curveBallScript: {fileID: 410023029}
-  paddleGrowKey: 111
-  paddleGrowCooldownTime: 10
-  growPaddleScript: {fileID: 410023028}
-  paddleAccelerateKey: 108
-  paddleAccelerateCooldownTime: 10
-  acceleratePaddleScript: {fileID: 410023031}

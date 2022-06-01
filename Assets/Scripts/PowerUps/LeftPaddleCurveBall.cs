@@ -7,7 +7,7 @@ public class LeftPaddleCurveBall : MonoBehaviour
     [SerializeField] private GameObject ball;
     [SerializeField] private Rigidbody ballBody;
 
-    [SerializeField] private float curveTime;
+    [SerializeField] private float curveDelay;
     [SerializeField] private int curveSpeed;
 
     public bool activateLeftCurveBall = false;
@@ -26,11 +26,11 @@ public class LeftPaddleCurveBall : MonoBehaviour
         }
         else
         {
-            if (ballBody.transform.position.x > 0)
+            if (ballBody.transform.position.x >= 0)
             {
                 ballBody.AddForce(-curveSpeed, 0, 0, ForceMode.Force);
             }
-            else if (ballBody.transform.position.x < 0)
+            else if (ballBody.transform.position.x <= 0)
             {
                 ballBody.AddForce(curveSpeed, 0, 0, ForceMode.Force);
             }
@@ -49,7 +49,7 @@ public class LeftPaddleCurveBall : MonoBehaviour
                 if (collision.gameObject == ball)
                 {
                     usedLeftCurveBall = true;
-                    Invoke("CurveBall", curveTime);
+                    Invoke("CurveBall", curveDelay);
                     Debug.Log("Starting Curve");
                 }
             }

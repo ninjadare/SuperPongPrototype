@@ -37,14 +37,14 @@ public class BallMovement : MonoBehaviour
 
         if (Random.value > 0.5f)
         {
-            randomServeX = Random.Range(0f, 1f);
+            //randomServeX = Random.Range(0f, 1f);
         }
         else
         {
-            randomServeX = Random.Range(-1f, 0f);
+            //randomServeX = Random.Range(-1f, 0f);
         }
 
-        ball.velocity = new Vector3(randomServeX * ballSpeed, 0f, randomServeZ * ballSpeed);
+        ball.velocity = new Vector3(0f, 0f, randomServeZ * ballSpeed);
         ball.transform.position = new Vector3(0f, 1f, 0f);
     }
 

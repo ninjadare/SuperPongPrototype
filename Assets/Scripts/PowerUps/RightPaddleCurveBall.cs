@@ -26,11 +26,11 @@ public class RightPaddleCurveBall : MonoBehaviour
         }
         else
         {
-            if (ballBody.transform.position.x >= 0)
+            if (ballBody.transform.position.x > 0)
             {
                 ballBody.AddForce(-curveSpeed, 0, 0, ForceMode.Force);
             }
-            else if (ballBody.transform.position.x <= 0)
+            else if (ballBody.transform.position.x < 0)
             {
                 ballBody.AddForce(curveSpeed, 0, 0, ForceMode.Force);
             }

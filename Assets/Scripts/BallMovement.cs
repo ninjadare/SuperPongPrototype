@@ -8,9 +8,10 @@ public class BallMovement : MonoBehaviour
     [SerializeField] private Rigidbody leftPaddleBody, rightPaddleBody;
     [SerializeField] private GameObject leftPaddle, rightPaddle;
 
-    [SerializeField] private float ballSpeed;
+    [SerializeField] public float ballSpeed;
     [SerializeField] private float paddleMultiplier;
 
+    private float defaultSpeed;
     private float randomServeX;
     private float randomServeZ;
 
@@ -18,6 +19,7 @@ public class BallMovement : MonoBehaviour
     void Start()
     {
         ball = GetComponent<Rigidbody>();
+        defaultSpeed = ballSpeed;
 
         Invoke("BallServe", 2f);
     }
@@ -51,6 +53,7 @@ public class BallMovement : MonoBehaviour
         // change to despawn and respawn ball
         ball.velocity = new Vector3(0, 0, 0);
         ball.transform.position = new Vector3(0f, 1f, 0f);
+        ballSpeed = defaultSpeed;
 
         Invoke("BallServe", 2f);
     }

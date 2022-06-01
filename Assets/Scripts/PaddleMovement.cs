@@ -9,7 +9,7 @@ public class PaddleMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody paddle;
 
-    [SerializeField] private float paddleSpeed;
+    [SerializeField] public float paddleSpeed;
 
     void Start()
     {

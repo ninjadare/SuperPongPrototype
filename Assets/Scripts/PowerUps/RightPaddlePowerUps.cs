@@ -8,27 +8,43 @@ public class RightPaddlePowerUps : MonoBehaviour
     [SerializeField] private KeyCode fastBallKey;
     [SerializeField] private float fastBallCooldownTime;
     [SerializeField] private RightPaddleFastBall fastBallScript;
+    [SerializeField] private Material fastBallMaterial;
 
     [Header("Curve Ball Power-Up")]
     [SerializeField] private KeyCode curveBallKey;
     [SerializeField] private float curveBallCooldownTime;
     [SerializeField] private RightPaddleCurveBall curveBallScript;
+    [SerializeField] private Material curveBallMaterial;
 
     [Header("Paddle Grow Power-Up")]
     [SerializeField] private KeyCode paddleGrowKey;
     [SerializeField] private float paddleGrowCooldownTime;
     [SerializeField] private RightPaddleGrow growPaddleScript;
+    [SerializeField] private Material paddleGrowMaterial;
 
     [Header("Paddle Accelerate Power-Up")]
     [SerializeField] private KeyCode paddleAccelerateKey;
     [SerializeField] private float paddleAccelerateCooldownTime;
     [SerializeField] private RightPaddleAccelerate acceleratePaddleScript;
+    [SerializeField] private Material paddleAccelerateMaterial;
 
     private bool powerupActive = false;
     private bool deactivateFastBall;
     private bool deactivateCurveBall;
     private bool deactivatePaddleGrow;
     private bool deactivatePaddleAccelerate;
+
+    private MeshRenderer meshRenderer;
+    private Material oldMaterial;
+
+    private void Start()
+    {
+        // Get the Mesh Renderer Component from this gameObject
+        meshRenderer = GetComponentInParent<MeshRenderer>();
+
+        // Get the current material applied on this GameObject
+        oldMaterial = meshRenderer.material;
+    }
 
     private void Update()
     {
@@ -47,6 +63,7 @@ public class RightPaddlePowerUps : MonoBehaviour
                 fastBallScript.activateRightFastBall = true;
                 deactivateFastBall = true;
                 Debug.Log("RIGHT PADDLE FAST BALL ACTIVATED");
+                meshRenderer.material = fastBallMaterial;
                 powerupActive = true;
             }
         }
@@ -56,6 +73,7 @@ public class RightPaddlePowerUps : MonoBehaviour
             fastBallScript.usedRightFastBall = false;
             fastBallScript.activateRightFastBall = false;
             Debug.Log("RIGHT PADDLE FAST BALL DEACTIVATED");
+            meshRenderer.material = oldMaterial;
             powerupActive = false;
             StartCoroutine(FastBallCooldown());
         }
@@ -77,6 +95,7 @@ public class RightPaddlePowerUps : MonoBehaviour
                 curveBallScript.activateRightCurveBall = true;
                 deactivateCurveBall = true;
                 Debug.Log("RIGHT PADDLE CURVE BALL ACTIVATED");
+                meshRenderer.material = curveBallMaterial;
                 powerupActive = true;
             }
         }
@@ -86,6 +105,7 @@ public class RightPaddlePowerUps : MonoBehaviour
             curveBallScript.usedRightCurveBall = false;
             curveBallScript.activateRightCurveBall = false;
             Debug.Log("RIGHT PADDLE CURVE BALL DEACTIVATED");
+            meshRenderer.material = oldMaterial;
             powerupActive = false;
             StartCoroutine(CurveBallCooldown());
         }
@@ -107,6 +127,7 @@ public class RightPaddlePowerUps : MonoBehaviour
                 growPaddleScript.activateRightPaddleGrow = true;
                 deactivatePaddleGrow = true;
                 Debug.Log("RIGHT PADDLE GROW ACTIVATED");
+                meshRenderer.material = paddleGrowMaterial;
                 powerupActive = true;
             }
         }
@@ -115,6 +136,7 @@ public class RightPaddlePowerUps : MonoBehaviour
         {
             growPaddleScript.usedRightPaddleGrow = false;
             Debug.Log("RIGHT PADDLE GROW DEACTIVATED");
+            meshRenderer.material = oldMaterial;
             powerupActive = false;
             StartCoroutine(GrowPaddleCooldown());
         }
@@ -136,6 +158,7 @@ public class RightPaddlePowerUps : MonoBehaviour
                 acceleratePaddleScript.activateRightPaddleAccelerate = true;
                 deactivatePaddleAccelerate = true;
                 Debug.Log("RIGHT PADDLE ACCELERATE ACTIVATED");
+                meshRenderer.material = paddleAccelerateMaterial;
                 powerupActive = true;
             }
         }
@@ -144,6 +167,7 @@ public class RightPaddlePowerUps : MonoBehaviour
         {
             acceleratePaddleScript.usedRightPaddleAccelerate = false;
             Debug.Log("RIGHT PADDLE ACCELERATE DEACTIVATED");
+            meshRenderer.material = oldMaterial;
             powerupActive = false;
             StartCoroutine(AcceleratePaddleCooldown());
         }

@@ -24,11 +24,18 @@ public class LeftPaddlePowerUps : MonoBehaviour
     [SerializeField] private float paddleAccelerateCooldownTime;
     [SerializeField] private LeftPaddleAccelerate acceleratePaddleScript;
 
+    private MeshRenderer material;
+
     private bool powerupActive = false;
     private bool deactivateFastBall;
     private bool deactivateCurveBall;
     private bool deactivatePaddleGrow;
     private bool deactivatePaddleAccelerate;
+
+    private void Start()
+    {
+        material = this.GetComponent<MeshRenderer>();
+    }
 
     private void Update()
     {

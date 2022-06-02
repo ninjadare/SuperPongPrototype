@@ -16,12 +16,6 @@ public class RightPaddleFastBall : MonoBehaviour
     public bool activateRightFastBall = false;
     public bool usedRightFastBall = false;
 
-    private void Start()
-    {
-        ballMovement = ball.GetComponent<BallMovement>();
-        ballSpeed = ballMovement.ballSpeed;
-    }
-
     private void FastBall()
     {
         if (ballBody.velocity.x != 0)

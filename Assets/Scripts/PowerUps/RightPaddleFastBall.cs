@@ -7,11 +7,7 @@ public class RightPaddleFastBall : MonoBehaviour
     [SerializeField] private GameObject ball;
     [SerializeField] private Rigidbody ballBody;
     [SerializeField] private float fastDelay;
-    [SerializeField] private float fastDuration;
     [SerializeField] private float fastSpeed;
-
-    private BallMovement ballMovement;
-    private float ballSpeed;
 
     public bool activateRightFastBall = false;
     public bool usedRightFastBall = false;
@@ -20,21 +16,18 @@ public class RightPaddleFastBall : MonoBehaviour
     {
         if (ballBody.velocity.x != 0)
         {
-            ballMovement.ballSpeed = fastSpeed;
-            StartCoroutine(FastBallDuration(fastDuration));
+            ballBody.AddForce(ball.transform.position.x, 0, fastSpeed * 100, ForceMode.Force);
+            usedRightFastBall = true;
+        }
+        else if (ballBody.transform.position.x == 0)
+        {
+            ballBody.AddForce(0, 0, fastSpeed * 100, ForceMode.Force);
+            usedRightFastBall = true;
         }
         else
         {
-            if (ballBody.transform.position.x == 0 && ballBody.velocity.z < 0)
-            {
-                ballBody.AddForce(0, 0, -fastSpeed * 50, ForceMode.Force);
-                usedRightFastBall = true;
-            }
-            else if (ballBody.transform.position.x == 0 && ballBody.velocity.z > 0)
-            {
-                ballBody.AddForce(0, 0, fastSpeed * 50, ForceMode.Force);
-                usedRightFastBall = true;
-            }
+            ballBody.AddForce(0, 0, fastSpeed * 100, ForceMode.Force);
+            usedRightFastBall = true;
         }
     }
 
@@ -50,12 +43,5 @@ public class RightPaddleFastBall : MonoBehaviour
                 }
             }
         }
-    }
-
-    IEnumerator FastBallDuration(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        ballMovement.ballSpeed = ballSpeed;
-        usedRightFastBall = true;
     }
 }

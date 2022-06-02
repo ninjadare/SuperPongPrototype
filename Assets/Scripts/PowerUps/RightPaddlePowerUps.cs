@@ -9,24 +9,28 @@ public class RightPaddlePowerUps : MonoBehaviour
     [SerializeField] private float fastBallCooldownTime;
     [SerializeField] private RightPaddleFastBall fastBallScript;
     [SerializeField] private Material fastBallMaterial;
+    [SerializeField] private GameObject fastBallIcon;
 
     [Header("Curve Ball Power-Up")]
     [SerializeField] private KeyCode curveBallKey;
     [SerializeField] private float curveBallCooldownTime;
     [SerializeField] private RightPaddleCurveBall curveBallScript;
     [SerializeField] private Material curveBallMaterial;
+    [SerializeField] private GameObject curveBallIcon;
 
     [Header("Paddle Grow Power-Up")]
     [SerializeField] private KeyCode paddleGrowKey;
     [SerializeField] private float paddleGrowCooldownTime;
     [SerializeField] private RightPaddleGrow growPaddleScript;
     [SerializeField] private Material paddleGrowMaterial;
+    [SerializeField] private GameObject paddleGrowIcon;
 
     [Header("Paddle Accelerate Power-Up")]
     [SerializeField] private KeyCode paddleAccelerateKey;
     [SerializeField] private float paddleAccelerateCooldownTime;
     [SerializeField] private RightPaddleAccelerate acceleratePaddleScript;
     [SerializeField] private Material paddleAccelerateMaterial;
+    [SerializeField] private GameObject paddleAccelerateIcon;
 
     private bool powerupActive = false;
     private bool deactivateFastBall;
@@ -34,16 +38,27 @@ public class RightPaddlePowerUps : MonoBehaviour
     private bool deactivatePaddleGrow;
     private bool deactivatePaddleAccelerate;
 
+    private SpriteRenderer fastBallRenderer;
+    private SpriteRenderer curveBallRenderer;
+    private SpriteRenderer paddleGrowRenderer;
+    private SpriteRenderer paddleAccelerateRenderer;
     private MeshRenderer meshRenderer;
     private Material oldMaterial;
 
     private void Start()
     {
-        // Get the Mesh Renderer Component from this gameObject
+        // gets the sprite renderers from each power-up icon
+        fastBallRenderer = fastBallIcon.GetComponent<SpriteRenderer>();
+        curveBallRenderer = curveBallIcon.GetComponent<SpriteRenderer>();
+        paddleGrowRenderer = paddleGrowIcon.GetComponent<SpriteRenderer>();
+        paddleAccelerateRenderer = paddleAccelerateIcon.GetComponent<SpriteRenderer>();
+
+        // get the mesh renderer component from the paddle
         meshRenderer = GetComponentInParent<MeshRenderer>();
 
-        // Get the current material applied on this GameObject
+        // get the default material applied on the paddle
         oldMaterial = meshRenderer.material;
+
     }
 
     private void Update()
@@ -81,7 +96,9 @@ public class RightPaddlePowerUps : MonoBehaviour
 
     IEnumerator FastBallCooldown()
     {
+        fastBallRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         yield return new WaitForSeconds(fastBallCooldownTime);
+        fastBallRenderer.color = new Color(1f, 1f, 1f, 1f);
         deactivateFastBall = false;
         Debug.Log("RIGHT PADDLE FAST BALL READY");
     }
@@ -113,7 +130,9 @@ public class RightPaddlePowerUps : MonoBehaviour
 
     IEnumerator CurveBallCooldown()
     {
+        curveBallRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         yield return new WaitForSeconds(curveBallCooldownTime);
+        curveBallRenderer.color = new Color(1f, 1f, 1f, 1f);
         deactivateCurveBall = false;
         Debug.Log("RIGHT PADDLE CURVE BALL READY");
     }
@@ -144,7 +163,9 @@ public class RightPaddlePowerUps : MonoBehaviour
 
     IEnumerator GrowPaddleCooldown()
     {
+        paddleGrowRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         yield return new WaitForSeconds(paddleGrowCooldownTime);
+        paddleGrowRenderer.color = new Color(1f, 1f, 1f, 1f);
         deactivatePaddleGrow = false;
         Debug.Log("RIGHT PADDLE GROW READY");
     }
@@ -175,7 +196,9 @@ public class RightPaddlePowerUps : MonoBehaviour
 
     IEnumerator AcceleratePaddleCooldown()
     {
+        paddleAccelerateRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         yield return new WaitForSeconds(paddleAccelerateCooldownTime);
+        paddleAccelerateRenderer.color = new Color(1f, 1f, 1f, 1f);
         deactivatePaddleAccelerate = false;
         Debug.Log("RIGHT PADDLE ACCELERATE READY");
     }

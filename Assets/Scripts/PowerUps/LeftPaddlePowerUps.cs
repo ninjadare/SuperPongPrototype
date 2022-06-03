@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Written by Zane
 public class LeftPaddlePowerUps : MonoBehaviour
 {
     [Header("Fast Ball Power-Up")]

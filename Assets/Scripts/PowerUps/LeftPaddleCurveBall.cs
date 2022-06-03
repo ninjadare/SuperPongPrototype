@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Written by Darius/Zane
 public class LeftPaddleCurveBall : MonoBehaviour
 {
     [SerializeField] private GameObject ball;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Written by Zane
 public class LeftPaddleFastBall : MonoBehaviour
 {
     [SerializeField] private GameObject ball;
@@ -16,17 +17,17 @@ public class LeftPaddleFastBall : MonoBehaviour
     {
         if (ballBody.velocity.x != 0)
         {
-            ballBody.AddForce(ball.transform.position.x, 0, fastSpeed * 100, ForceMode.Force);
+            ballBody.AddForce(ball.transform.position.x, 0, -fastSpeed * 100, ForceMode.Force);
             usedLeftFastBall = true;
         }
         else if (ballBody.transform.position.x == 0)
         {
-            ballBody.AddForce(0, 0, fastSpeed * 100, ForceMode.Force);
+            ballBody.AddForce(0, 0, -fastSpeed * 100, ForceMode.Force);
             usedLeftFastBall = true;
         }
         else
         {
-            ballBody.AddForce(0, 0, fastSpeed * 100, ForceMode.Force);
+            ballBody.AddForce(0, 0, -fastSpeed * 100, ForceMode.Force);
             usedLeftFastBall = true;
         }
     }

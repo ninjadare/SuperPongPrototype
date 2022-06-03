@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Written by Zane/Darius
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private  GameObject mainMenu;
+    [SerializeField] private  GameObject controlsMenu;
+    [SerializeField] private GameObject leftPlayerWinScreen;
+    [SerializeField] private GameObject rightPlayerWinScreen;
     [SerializeField] private GameObject Ball;
     [SerializeField] private Text leftScoreText;
     [SerializeField] private Text rightScoreText;
@@ -15,9 +21,9 @@ public class GameManager : MonoBehaviour
     public int leftPlayerScore;
     public int rightPlayerScore;
 
-    // Start is called before the first frame update
     private void Start()
     {
+        Time.timeScale = 0;
         leftPlayerScore = 0;
         rightPlayerScore = 0;
     }
@@ -34,6 +40,33 @@ public class GameManager : MonoBehaviour
             RightPlayerWins();
             gameOver = true;
         }
+
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            ReturnToMainMenu();
+        }
+    }
+
+    public void PlayGame()
+    {
+        Time.timeScale = 1f;
+        mainMenu.SetActive(false);
+    }
+
+    public void ControlsMenu()
+    {
+        mainMenu.SetActive(false);
+        controlsMenu.SetActive(true);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+    }
+
+    public static void QuitGame()
+    {
+        Application.Quit();
     }
 
     public void UpdateLeftPlayerScore()
@@ -80,13 +113,13 @@ public class GameManager : MonoBehaviour
 
     private void LeftPlayerWins()
     {
-        Debug.Log("Left Player Wins!");
+        leftPlayerWinScreen.SetActive(true);
         Time.timeScale = 0f;
     }
 
     private void RightPlayerWins()
     {
-        Debug.Log("Right Player Wins!");
+        rightPlayerWinScreen.SetActive(true);
         Time.timeScale = 0f;
     }
 }
